@@ -1,0 +1,87 @@
+{
+  "students": [
+    
+  ],
+  "assessments": [
+    {
+      "id": 5410788,
+      "name": "Scope"
+    },
+    {
+      "id": 5410778,
+      "name": "Objects"
+    },
+    {
+      "id": 5410774,
+      "name": "JSON"
+    },
+    {
+      "id": 5410764,
+      "name": "Functions 2"
+    },
+    {
+      "id": 5410749,
+      "name": "For Loops"
+    },
+    {
+      "id": 5410735,
+      "name": "Functions 1"
+    },
+    {
+      "id": 5410687,
+      "name": "ES6"
+    },
+    {
+      "id": 5410673,
+      "name": "Data Types"
+    },
+    {
+      "id": 5410656,
+      "name": "Context 2"
+    },
+    {
+      "id": 5410643,
+      "name": "Context 1"
+    },
+    {
+      "id": 5410635,
+      "name": "Constructors Functions"
+    },
+    {
+      "id": 5410605,
+      "name": "Constructors Classes"
+    },
+    {
+      "id": 5410590,
+      "name": "Closures"
+    },
+    {
+      "id": 5410583,
+      "name": "Callbacks 2"
+    },
+    {
+      "id": 5410578,
+      "name": "Callbacks 1"
+    },
+    {
+      "id": 5410571,
+      "name": "Built in Prototypes"
+    },
+    {
+      "id": 5410563,
+      "name": "Async Promises"
+    },
+    {
+      "id": 5410544,
+      "name": "Arrays 3"
+    },
+    {
+      "id": 5410488,
+      "name": "Arrays 2"
+    },
+    {
+      "id": 5410359,
+      "name": "Arrays 1"
+    }
+  ]
+}
