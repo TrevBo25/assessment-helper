@@ -29,7 +29,7 @@ export default class AddStudentSearch extends Component {
 
     return(
       <div className="outterSearch" >
-        <ul className={display.length > 1 ? "searchBoxOut" : null}>
+        <ul className={display.length > 0 ? "searchBoxOut" : null}>
           {display.map(e => (<div onClick={() => this.props.submit(e)} className="searchBoxIn"><h3 className="searchName">{e.username}</h3></div>))}
         </ul>
         <input onChange={e => this.setState({term: e.target.value}, this.doSearch())} placeholder="Search by username" value={this.state.term} className="searchInput" />
