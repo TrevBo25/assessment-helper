@@ -10,6 +10,7 @@ module.exports = {
         res.status(200).json(response.data)
       })
   },
+
   add: (req, res) => {
     const {studentID, assessmentID} = req.body;
     console.log(moment().add(1, 'd').format('YYYY-MM-DD'))
@@ -18,5 +19,12 @@ module.exports = {
         console.log(response.data)
       })
       .catch(err => console.log('err', err))
+  },
+
+  getProjects: (req, res) => {
+    axios.get(`https://gitlab.com/api/v4/groups/2487502/projects`, {headers: {'Private-Token': process.env.GL_KEY}})
+      .then(response => {
+        res.status(200).json({assessments: response.data})
+      })
   }
 }

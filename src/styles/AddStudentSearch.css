@@ -1,0 +1,22 @@
+.outterSearch{
+  position: absolute;
+  bottom: 5px;
+  left: calc(50% - 100px);
+}
+.searchInput{
+  width: 200px;
+  font-size: 20px;
+}
+.searchBoxOut{
+  border: black 1px solid;
+}
+.searchName{
+  padding: 5px;
+  border: black 1px solid;
+  transition: all .6s;
+}
+.searchName:hover{
+  cursor: pointer;
+  background-color: rgb(211, 211, 211);
+  transition: all .6s;
+}

@@ -1,0 +1,15 @@
+.assessment{
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #DFDFDF;
+  padding: 5px;
+  font-size: 20px;
+  transition: all .6s;
+}
+.assessment:hover{
+  cursor: pointer;
+  background-color: rgb(197, 197, 197);
+  transition: all .6s;
+}

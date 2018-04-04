@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Student from './components/Student';
 import Assessment from './components/Assessment';
-import AddStudentModal from './components/AddStudentModal';
+import AddStudentSearch from './components/AddStudentSearch';
+
+import './styles/App.css'
 
 class App extends Component {
   constructor(){
@@ -28,11 +30,28 @@ class App extends Component {
   }
 
   getInfo(){
-    axios.get('/api/getInfo')
-      .then( response => {
-        const {assessments, students} = response.data
-        this.setState(state => ({assessments, students}))
-      })
+
+    function getStudents() {
+      return axios.get('/api/getInfo')
+    }
+
+    function getAssessments() {
+      return axios.get('/api/projects')
+    }
+    
+    axios.all([getStudents(), getAssessments()])
+      .then(axios.spread((students, assessments) => {
+        console.log(assessments.data);
+        console.log(students.data)
+        this.setState(state => ({assessments: assessments.data.assessments, students: students.data.students}))
+      }))
+
+     // axios.all([getAssessments(), getStudents()])
+    //   .then(axios.spread((assessments, students) => {
+    //     console.log(assessments.data)
+    //     console.log(students.data)
+    //     res.status(200).json({assessments: assessments.data, students: students.data})
+    //   }))
   }
 
   toggleModal(bool){
@@ -67,24 +86,35 @@ class App extends Component {
   render() {
     console.log(this.state)
     return (
-      <div>
-        <div>
-        {!this.state.showAddStudent ? <button onClick={() => this.toggleModal(true)}>Click Me to Show</button> : null}
-        {this.state.showAddStudent ? <AddStudentModal submit={this.addStudentToDB} /> : null}
-        <br />
-        {this.state.selectedStudent.name ? this.state.selectedStudent.name : null}
-        <br />
-        {this.state.selectedAssessment.name ? this.state.selectedAssessment.name : null}
-        <br />
-        <button onClick={this.addStudentToAssessment} > add the selected to the selected</button>
+      <div className="outterApp">
+        <div className="topHolder">
+          <div className="topNameHolder" >
+            <h2 className="topTitle">Selected Assessment</h2>
+            {this.state.selectedAssessment.name ? (<h3 className="topSelected">{this.state.selectedAssessment.name}</h3>) : null}
+          </div>
+          <div className="buttonHolder">
+            {this.state.selectedStudent.name && this.state.selectedAssessment.name ? (<button onClick={this.addStudentToAssessment} className="addButton" >ADD STUDENT TO ASSESSMENT</button>) : null}
+          </div>
+          <div className="topNameHolder" >
+            <h2 className="topTitle">Selected Student</h2>
+            {this.state.selectedStudent.name ? (<h3 className="topSelected">{this.state.selectedStudent.name}</h3>) : null}
+          </div>
         </div>
-        <div>
-          <ul>
-            {this.state.assessments.map(e => (<Assessment assessment={e} key={e.id} select={this.selectAssessment} />))}
-          </ul>
-          <ul>
-            {this.state.students.map(e => (<Student student={e} key={e.id} select={this.selectStudent} />))}
-          </ul>
+        <div className="listsHolder">
+          <div className="holderHolder">
+            <h3 className="topTitle">Assessments</h3>
+            <ul style={{"marginTop": "10px"}}>
+              {this.state.assessments.length > 1 ? this.state.assessments.sort().reverse().map(e => (<Assessment assessment={e} key={e.id} select={this.selectAssessment} />)) : <p>loading...</p>}
+            </ul>
+          </div>
+          <div className="holderHolder">
+            <h3 className="topTitle">Students</h3> 
+            <ul style={{"marginTop": "10px"}}>
+              {this.state.students.length > 1 ? this.state.students.map(e => (<Student student={e} key={e.id} select={this.selectStudent} />)) : (this.state.assessments.length > 1 ? <p>please add some students</p> : <p>loading...</p>)}
+            </ul>
+            {!this.state.showAddStudent ? <div onClick={() => this.toggleModal(true)} className="coolButton"><p>+</p></div> : null}
+            {this.state.showAddStudent ? <AddStudentSearch submit={this.addStudentToDB} /> : null}
+          </div>
         </div>
       </div>
     );

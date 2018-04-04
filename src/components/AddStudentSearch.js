@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import '../styles/AddStudentSearch.css'
 
 
-export default class AddStudentModal extends Component {
+export default class AddStudentSearch extends Component {
   constructor(){
     super()
     this.state = {
@@ -27,11 +28,11 @@ export default class AddStudentModal extends Component {
     var display = this.state.results.filter((e, i) => i < 5 && this.state.term && e.username[0].toLowerCase() === this.state.term[0].toLowerCase() && e.username.toLowerCase().includes(this.state.term.toLowerCase()) ? true : false)
 
     return(
-      <div>
-        <input onChange={e => this.setState({term: e.target.value}, this.doSearch())} placeholder="Please enter the students username" value={this.state.term} />
-        <ul>
-          {display.map(e => (<li onClick={() => this.props.submit(e)}>{e.username}</li>))}
+      <div className="outterSearch" >
+        <ul className={display.length > 1 ? "searchBoxOut" : null}>
+          {display.map(e => (<div onClick={() => this.props.submit(e)} className="searchBoxIn"><h3 className="searchName">{e.username}</h3></div>))}
         </ul>
+        <input onChange={e => this.setState({term: e.target.value}, this.doSearch())} placeholder="Search by username" value={this.state.term} className="searchInput" />
       </div>
     )
   }
