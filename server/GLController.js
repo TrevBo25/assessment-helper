@@ -1,4 +1,5 @@
 const axios = require('axios');
+const moment = require('moment');
 
 module.exports = {
   search: (req, res) => {
@@ -10,11 +11,9 @@ module.exports = {
       })
   },
   add: (req, res) => {
-    console.log(req.body)
     const {studentID, assessmentID} = req.body;
-    console.log(typeof studentID)
-    console.log(typeof assessmentID)
-    axios.post(`https://gitlab.com/api/v4/projects/${assessmentID}/members`, {user_id: studentID, access_level: 20}, {headers: {'Private-Token': process.env.GL_KEY}})
+    console.log(moment().add(1, 'd').format('YYYY-MM-DD'))
+    axios.post(`https://gitlab.com/api/v4/projects/${assessmentID}/members`, {user_id: studentID, access_level: 20, expires_at: moment().add(1, 'd').format('YYYY-MM-DD')}, {headers: {'Private-Token': process.env.GL_KEY}})
       .then(response => {
         console.log(response.data)
       })
