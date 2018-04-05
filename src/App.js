@@ -41,17 +41,8 @@ class App extends Component {
     
     axios.all([getStudents(), getAssessments()])
       .then(axios.spread((students, assessments) => {
-        console.log(assessments.data);
-        console.log(students.data)
         this.setState(state => ({assessments: assessments.data.assessments, students: students.data.students}))
       }))
-
-     // axios.all([getAssessments(), getStudents()])
-    //   .then(axios.spread((assessments, students) => {
-    //     console.log(assessments.data)
-    //     console.log(students.data)
-    //     res.status(200).json({assessments: assessments.data, students: students.data})
-    //   }))
   }
 
   toggleModal(bool){
@@ -59,12 +50,10 @@ class App extends Component {
   }
 
   addStudentToDB(student){
-    console.log('student', student)
     axios.post('/api/addStudent', student)
       .then(response => {
-        console.log('hithit')
         this.toggleModal(false);
-        this.getInfo();
+        this.getInfo()
       })
   }
 
@@ -79,7 +68,8 @@ class App extends Component {
   addStudentToAssessment(){
     axios.post('/api/add', {studentID: this.state.selectedStudent.id, assessmentID: this.state.selectedAssessment.id})
       .then(response => {
-        console.log(response.data)
+        this.getInfo()
+        this.setState(state => ({selectedStudent: {},selectedAssessment: {},}))
       })
   }
 
@@ -104,13 +94,13 @@ class App extends Component {
           <div className="holderHolder">
             <h3 className="topTitle">Assessments</h3>
             <ul style={{"marginTop": "10px"}}>
-              {this.state.assessments.length > 1 ? this.state.assessments.sort().reverse().map(e => (<Assessment assessment={e} key={e.id} select={this.selectAssessment} />)) : <p>loading...</p>}
+              {this.state.assessments.length > 0 ? this.state.assessments.sort((a, b) => a - b).reverse().map(e => (<Assessment assessment={e} key={e.id} select={this.selectAssessment} />)) : <div className="loader"></div>}
             </ul>
           </div>
           <div className="holderHolder">
             <h3 className="topTitle">Students</h3> 
             <ul style={{"marginTop": "10px"}}>
-              {this.state.students.length > 1 ? this.state.students.map(e => (<Student student={e} key={e.id} select={this.selectStudent} />)) : (this.state.assessments.length > 1 ? <p>please add some students</p> : <p>loading...</p>)}
+              {this.state.students.length > 0 ? this.state.students.map(e => (<Student student={e} key={e.id} select={this.selectStudent} />)) : (this.state.assessments.length > 1 ? <p className="noStudents">There are no students</p> : <div className="loader"></div>)}
             </ul>
             {!this.state.showAddStudent ? <div onClick={() => this.toggleModal(true)} className="coolButton"><p>+</p></div> : null}
             {this.state.showAddStudent ? <AddStudentSearch submit={this.addStudentToDB} /> : null}

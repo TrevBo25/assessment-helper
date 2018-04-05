@@ -18,7 +18,6 @@ export default class AddStudentSearch extends Component {
     if(this.state.term){
       axios.get(`/api/search?term=${this.state.term}`)
         .then(response => {
-          console.log(response.data)
           this.setState(state => ({results:response.data}))
         })
     }
