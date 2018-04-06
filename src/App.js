@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Notifications, {notify} from 'react-notify-toast';
+
 import Student from './components/Student';
 import Assessment from './components/Assessment';
 import AddStudentSearch from './components/AddStudentSearch';
@@ -77,9 +79,9 @@ class App extends Component {
     axios.post('/api/add', {studentID: this.state.selectedStudent.id, assessmentID: this.state.selectedAssessment.id})
       .then(response => {
         if(response.data === "Success"){
-          alert("Student successfully added to assessment.")
+          notify.show("Student successfully added to assessment.", "success", 4000)
         } else {
-          alert("Student already has access to selected assessment.")
+          notify.show("Student already has access to selected assessment.", "warning", 4000)
         }
         this.getInfo()
         this.setState(state => ({selectedStudent: {},selectedAssessment: {},}))
@@ -89,6 +91,7 @@ class App extends Component {
   render() {
     return (
       <div className="outterApp">
+        <Notifications />
         <div className="topHolder">
           <div className="topNameHolder" >
             <h2 className="topTitle">Selected Assessment</h2>

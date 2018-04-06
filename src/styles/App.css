@@ -49,6 +49,7 @@
 .topSelected{
   font-size: 30px;
   margin-top: 35px;
+  text-align: center;
 }
 .buttonHolder{
   flex: 1;

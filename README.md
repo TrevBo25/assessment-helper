@@ -30,7 +30,7 @@ Using the app is very straight forward.
 
 ### Adding a student to the list of students
 
-To add a student to `db.json` select the add button in the students column. This is where you will need the student's GitLab username. Once the student's name appears give it a click and it will be added to the list.
+To add a student to `db.json` select the add button in the students column. This is where you will need the student's GitLab username. Once the student's name appears give it a click and they will be added to the list.
 
 ### Adding a student to an assessment
 
