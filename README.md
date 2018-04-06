@@ -14,19 +14,19 @@ The only other step to get this app up and running is creating a `.env` file, ba
 
 ## Running the app
 
-This is where it gets a little messy. There are three different commands we need to run for full functionality. In this case we need three different terminal windows open.
+We can run either `npm run dev` to run all three pieces or run all three pieces below in separate terminals.
 
 In the first terminal we will get the react app started with `yarn start`
 
 In the next terminal we will start the `json-server` so we can store the students for convenience. The `json-server` automatically defaults to port 3000, since we have our react app on that specific port we will need to tell it to run elsewhere. The command to get the `json-server` running is `json-server --watch db.json --port 3001`
 
-The last terminal will house our server. By default `nodemon` will restart each time it senses a change so we need to tell it ignore our `db.json` file. The command to start the server will be `nodemon --ignore db.json`
+The last terminal will house our server. By default `nodemon` will restart each time it senses a change so we need to tell it ignore our `db.json` file. We can create a nodemon.json file telling nodemon to ignore changes to the db.json file as well as the public folder.  Or we can start it's command with `nodemon --ignore db.json`.
 
 Whew...
 
 ## Directions
 
-Using the app is very straight forward. 
+Using the app is very straight forward.
 
 ### Adding a student to the list of students
 
@@ -36,4 +36,4 @@ To add a student to `db.json` select the add button in the students column. This
 
 To add a student to an assessment simply select the student and the assessment. Once you have done so you will see a button appear. Give it a click and you will recieve an alert of whether it was successful or not. When you add a student to an assessment they are given the reporter access level and their access will expire the following day.
 
-### If you see an error or think of an improvement by all means submit a PR. 
+### If you see an error or think of an improvement by all means submit a PR.
