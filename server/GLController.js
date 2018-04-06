@@ -15,8 +15,11 @@ module.exports = {
     const {studentID, assessmentID} = req.body;
     axios.post(`https://gitlab.com/api/v4/projects/${assessmentID}/members`, {user_id: studentID, access_level: 20, expires_at: moment().add(1, 'd').format('YYYY-MM-DD')}, {headers: {'Private-Token': process.env.GL_KEY}})
       .then(response => {
+        res.status(200).send("Success")
       })
-      .catch(err => console.log('err', err))
+      .catch(err => {
+        res.status(200).send("Already added")
+      })
   },
 
   getProjects: (req, res) => {

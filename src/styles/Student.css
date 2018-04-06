@@ -1,7 +1,7 @@
 .student{
   margin: 5px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   background-color: #DFDFDF;
   padding: 5px;
@@ -9,7 +9,16 @@
   transition: all .6s;
 }
 .student:hover{
-  cursor: pointer;
   background-color: rgb(197, 197, 197);
   transition: all .6s;
+}
+.studentName:hover{
+  cursor: pointer;
+}
+.fas{
+  margin-left: 10px;
+  color: red;
+}
+.fas:hover{
+  cursor: pointer;
 }

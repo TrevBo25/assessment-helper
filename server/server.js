@@ -13,6 +13,7 @@ app.get('/api/projects', GLCtrl.getProjects)
 
 app.get('/api/getInfo', JSONCtrl.getInfo);
 app.post('/api/addStudent', JSONCtrl.addStudent);
+app.delete('/api/deleteStudent/:id', JSONCtrl.deleteStudent);
 
 const port = 3333
 app.listen(port, () => console.log(`listening on port ${port}`));
