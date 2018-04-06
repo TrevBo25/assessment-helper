@@ -76,7 +76,6 @@ class App extends Component {
   addStudentToAssessment(){
     axios.post('/api/add', {studentID: this.state.selectedStudent.id, assessmentID: this.state.selectedAssessment.id})
       .then(response => {
-        console.log(response.data)
         if(response.data === "Success"){
           alert("Student successfully added to assessment.")
         } else {

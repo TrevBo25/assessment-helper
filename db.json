@@ -1,12 +1,3 @@
 {
-  "students": [
-    {
-      "id": 2166260,
-      "name": "Tyler Miller",
-      "username": "TylerM2112",
-      "state": "active",
-      "avatar_url": "https://secure.gravatar.com/avatar/460b8ceddcf229368f3990da38367a96?s=80&d=identicon",
-      "web_url": "https://gitlab.com/TylerM2112"
-    }
-  ]
+  "students": []
 }
