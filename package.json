@@ -19,7 +19,7 @@
     "react-scripts": "1.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently \"react-scripts start\" \"json-server --watch db.json --port 3001\" \"nodemon\"",
     "build": "react-scripts build",
     "dev": "json-server --watch db.json --port 3001 | nodemon server/server.js | react-scripts start",
     "test": "react-scripts test --env=jsdom",
